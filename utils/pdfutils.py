@@ -1,6 +1,6 @@
 from pdf2image import convert_from_path
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = "tesseract"  # System-installed
 import pdfplumber
 import os
 
@@ -15,9 +15,9 @@ def extract_text_from_pdf(file_path):
 
         if not text.strip():
             # Manually specify Poppler path for Windows
-            poppler_path = r"C:\poppler\Release-24.08.0-0\poppler-24.08.0\Library\bin"  # <-- update to your actual path
+            # <-- update to your actual path
 
-            images = convert_from_path(file_path, poppler_path=poppler_path)
+            images = convert_from_path(file_path)
             for img in images:
                 text += pytesseract.image_to_string(img)
 
