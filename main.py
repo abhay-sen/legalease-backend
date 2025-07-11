@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import requests
 import shutil
@@ -7,7 +8,13 @@ import os
 from utils.pdfutils import extract_text_from_pdf
 from utils.report_generator import generate_legal_report
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Use exact origin in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 class PDFLinkRequest(BaseModel):
     url: str
 
