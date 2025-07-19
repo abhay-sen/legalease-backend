@@ -6,3 +6,4 @@ requests
 pdf2image
 pytesseract
 pdfplumber
+google-generativeai

@@ -6,7 +6,7 @@ import shutil
 import os
 
 from utils.pdfutils import extract_text_from_pdf
-from utils.report_generator import generate_legal_report
+from utils.report_generator import generate_legal_report_with_gemini
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -36,7 +36,7 @@ async def process_pdf_url(req: PDFLinkRequest):
 
         
 
-        report = generate_legal_report(text)
+        report = generate_legal_report_with_gemini(text)
 
         return {
             "report": report
