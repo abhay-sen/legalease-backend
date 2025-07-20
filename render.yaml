@@ -1,12 +1,10 @@
 services:
   - type: web
-    name: fastapi-legal-ai
-    runtime: python
-    buildCommand: |
-      apt-get update && \
-      apt-get install -y poppler-utils tesseract-ocr && \
-      pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    name: legal-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    region: oregon
     envVars:
-      - key: OPENAI_API_KEY
+      - key: GOOGLE_API_KEY
         sync: false
