@@ -39,7 +39,8 @@ async def process_pdf_url(req: PDFLinkRequest):
         report = generate_legal_report_with_gemini(text)
 
         return {
-            "report": report
+            "report": report,
+            "text": text
         }
 
     except Exception as e:
